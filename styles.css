@@ -1,0 +1,27 @@
+* {
+    font-family: sans-serif;
+}
+
+.content-container {
+    margin: 5vh 20vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+h1 {
+    font-size: 48px;
+    margin-top: 0px;
+}
+
+.game-mat{
+    /* background-color: pink; */
+    height: 650px;
+    width: 650px;
+    display:flex;
+    flex:1 1 auto;
+    flex-wrap:wrap;
+    border: 1px solid black;
+}
