@@ -3,21 +3,36 @@ let gameMatHeight = gameMat.clientHeight - parseFloat(getComputedStyle(gameMat).
 const GAME_PIXEL_CLASSNAME = "game-pixel"
 const ORIGINAL_GAME_PIXEL_COLOR = 'white'
 const HOVER_COLOR = 'grey'
+let draw_mode = false;
 
-function changeColor() {
-    this.style.backgroundColor = HOVER_COLOR;
+function hoverColor() {
+    this.classList.add('hover')
 }
 
 function resetColor() {
-    this.style.backgroundColor = ORIGINAL_GAME_PIXEL_COLOR;
+    this.classList.remove('hover')
+}
+
+function setdrawMode(bool) {
+    draw_mode = bool;
+}
+
+function draw() {
+    if (draw_mode === true) {
+        this.classList.add('drawn')
+        this.style.backgroundColor = 'black'
+    }
 }
 
 function setUpGamePixels(gridSize=16) {
     for (let i = 0; i < gridSize*gridSize; i++) {
         let div = document.createElement('div');
         div.classList.add(GAME_PIXEL_CLASSNAME)
-        div.addEventListener('mouseover', changeColor) // can be easily done with css class though
+        div.addEventListener('mouseover', hoverColor) // can be easily done with css class though
         div.addEventListener('mouseout', resetColor)
+        div.addEventListener('mousedown', () => setdrawMode(true));
+        div.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', () => setdrawMode(false));
         div.style.height = gameMatHeight / gridSize + 'px';
         div.style.width = gameMatHeight / gridSize + 'px';
         gameMat.appendChild(div);

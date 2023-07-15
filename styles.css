@@ -30,6 +30,6 @@ h1 {
     border: 1px solid black;
 }
 
-/* .game-pixel:hover {
-    background-color: green;
-} */
+.hover {
+    background-color: grey;
+}
