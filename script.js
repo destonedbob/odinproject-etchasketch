@@ -25,4 +25,34 @@ function setUpGamePixels(N=16) {
     }
 }
 
+function askUserForPixelSize() {
+
+    let userInput = prompt("How many pixels per side do you want?");
+
+    // check if cancel button press
+    if (userInput === null) {
+        return null;
+    }
+
+    // check if user input is a valid number
+    while (isNaN(userInput) || (userInput < 1 || userInput > 100)) {
+        userInput = prompt("Invalid input. Please enter a value between 1 and 100.");
+        console.log(userInput)
+        if (userInput === null) {
+            return null;
+        }
+    }
+
+    return Number.parseInt(userInput);
+}
+
+function setPixels() {
+    // Ask user for number of pixels per side.
+    let numPixelsToSet = askUserForPixelSize();
+
+    // delete previous game pixels
+
+    // set new game pixels
+}
+
 setUpGamePixels()
