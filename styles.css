@@ -20,8 +20,16 @@ h1 {
     /* background-color: pink; */
     height: 650px;
     width: 650px;
+    padding:10px;
     display:flex;
+    justify-content: center;
+    align-items: center;
     flex:1 1 auto;
     flex-wrap:wrap;
+    box-sizing: border-box;
     border: 1px solid black;
 }
+
+/* .game-pixel:hover {
+    background-color: green;
+} */
