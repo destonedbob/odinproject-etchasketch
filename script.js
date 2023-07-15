@@ -1,6 +1,5 @@
 let gameMat = document.querySelector('.game-mat')
 let gameMatHeight = gameMat.clientHeight - parseFloat(getComputedStyle(gameMat).paddingLeft) * 2;
-const gridSize = 16;
 const GAME_PIXEL_CLASSNAME = "game-pixel"
 const ORIGINAL_GAME_PIXEL_COLOR = 'white'
 const HOVER_COLOR = 'grey'
@@ -13,8 +12,8 @@ function resetColor() {
     this.style.backgroundColor = ORIGINAL_GAME_PIXEL_COLOR;
 }
 
-function setUpGamePixels(N=16) {
-    for (let i = 0; i < N*N; i++) {
+function setUpGamePixels(gridSize=16) {
+    for (let i = 0; i < gridSize*gridSize; i++) {
         let div = document.createElement('div');
         div.classList.add(GAME_PIXEL_CLASSNAME)
         div.addEventListener('mouseover', changeColor) // can be easily done with css class though
@@ -55,12 +54,16 @@ function deleteExistingPixels() {
 
 function setPixels() {
     // Ask user for number of pixels per side.
-    // let numPixelsToSet = askUserForPixelSize();
+    let numPixelsToSet = askUserForPixelSize();
+    if (numPixelsToSet === null) {
+        return;
+    }
 
     // delete previous game pixels
     deleteExistingPixels()
 
     // set new game pixels
+    setUpGamePixels(numPixelsToSet)
 }
 
 setUpGamePixels()
