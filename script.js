@@ -46,11 +46,19 @@ function askUserForPixelSize() {
     return Number.parseInt(userInput);
 }
 
+function deleteExistingPixels() {
+    let existingPixels = document.querySelectorAll('.' + GAME_PIXEL_CLASSNAME);
+    existingPixels.forEach(pixel => {
+        pixel.remove();
+    })
+}
+
 function setPixels() {
     // Ask user for number of pixels per side.
-    let numPixelsToSet = askUserForPixelSize();
+    // let numPixelsToSet = askUserForPixelSize();
 
     // delete previous game pixels
+    deleteExistingPixels()
 
     // set new game pixels
 }
