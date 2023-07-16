@@ -1,16 +1,19 @@
-let gameMat = document.querySelector('.game-mat')
+let penColorButton = document.querySelector('#changePen');
+let currPenColor = 'black';
+let otherPenColor = 'rainbow';
+let gameMat = document.querySelector('.game-mat');
 let gameMatHeight = gameMat.clientHeight - parseFloat(getComputedStyle(gameMat).paddingLeft) * 2;
-const GAME_PIXEL_CLASSNAME = "game-pixel"
-const ORIGINAL_GAME_PIXEL_COLOR = 'white'
-const HOVER_COLOR = 'grey'
+const GAME_PIXEL_CLASSNAME = "game-pixel";
+const ORIGINAL_GAME_PIXEL_COLOR = 'white';
+const HOVER_COLOR = 'grey';
 let draw_mode = false;
 
 function hoverColor() {
-    this.classList.add('hover')
+    this.classList.add('hover');
 }
 
 function resetColor() {
-    this.classList.remove('hover')
+    this.classList.remove('hover');
 }
 
 function setdrawMode(bool) {
@@ -18,18 +21,28 @@ function setdrawMode(bool) {
 }
 
 function draw() {
+    if (this.classList.contains('drawn')) {
+        return;
+    }
     if (draw_mode === true) {
-        this.classList.add('drawn')
-        this.style.backgroundColor = 'black'
+        this.classList.add('drawn');
+        if (currPenColor == 'black') {
+            this.style.backgroundColor = 'black';
+        } else {
+            let r = Math.random() * 255
+            let g = Math.random() * 255
+            let b = Math.random() * 255
+            this.style.backgroundColor = `rgb(${r},${g},${b})`
+        }
     }
 }
 
 function setUpGamePixels(gridSize=16) {
     for (let i = 0; i < gridSize*gridSize; i++) {
         let div = document.createElement('div');
-        div.classList.add(GAME_PIXEL_CLASSNAME)
-        div.addEventListener('mouseover', hoverColor) // can be easily done with css class though
-        div.addEventListener('mouseout', resetColor)
+        div.classList.add(GAME_PIXEL_CLASSNAME);
+        div.addEventListener('mouseover', hoverColor); // can be easily done with css class though
+        div.addEventListener('mouseout', resetColor);
         div.addEventListener('mousedown', () => setdrawMode(true));
         div.addEventListener('mousemove', draw);
         window.addEventListener('mouseup', () => setdrawMode(false));
@@ -75,10 +88,15 @@ function setPixels() {
     }
 
     // delete previous game pixels
-    deleteExistingPixels()
+    deleteExistingPixels();
 
     // set new game pixels
-    setUpGamePixels(numPixelsToSet)
+    setUpGamePixels(numPixelsToSet);
+}
+
+function changePen() {
+    [currPenColor, otherPenColor] = [otherPenColor, currPenColor];
+    penColorButton.textContent = `Toggle pen color to ${currPenColor}`;
 }
 
 setUpGamePixels()
