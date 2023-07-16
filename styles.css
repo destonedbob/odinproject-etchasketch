@@ -17,7 +17,6 @@ h1 {
 }
 
 .game-mat{
-    /* background-color: pink; */
     height: 650px;
     width: 650px;
     padding:10px;
@@ -31,5 +30,20 @@ h1 {
 }
 
 .hover {
+    background-color: grey;
+}
+
+.user-input-container > button {
+    margin-bottom: 25px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.user-input-container > button:hover {
+    background-color: lightgrey;
+}
+
+.user-input-container > button:active {
     background-color: grey;
 }
